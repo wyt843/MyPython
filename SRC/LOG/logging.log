@@ -1,0 +1,40 @@
+DEBUG:root:this is a debug log
+INFO:root:this is a info log
+WARNING:root:this is a warning log
+ERROR:root:this is a error log
+CRITICAL:root:this is a critical log
+DEBUG:root:this is a debug log
+INFO:root:this is a info log
+WARNING:root:this is a warning log
+ERROR:root:this is a error log
+CRITICAL:root:this is a critical log
+2019-01-02 18:00:30,911====DEBUG====this is a debug log
+2019-01-02 18:00:30,911====INFO====this is a info log
+2019-01-02 18:00:30,911====WARNING====this is a warning log
+2019-01-02 18:00:30,911====ERROR====this is a error log
+2019-01-02 18:00:30,911====CRITICAL====this is a critical log
+2019-01-02 18:00:30,911====DEBUG====this is a debug log
+2019-01-02 18:00:30,911====INFO====this is a info log
+2019-01-02 18:00:30,911====WARNING====this is a warning log
+2019-01-02 18:00:30,911====ERROR====this is a error log
+2019-01-02 18:00:30,911====CRITICAL====this is a critical log
+01/03/2019 10:09:35 AM====DEBUG====this is a debug log
+01/03/2019 10:09:35 AM====INFO====this is a info log
+01/03/2019 10:09:35 AM====WARNING====this is a warning log
+01/03/2019 10:09:35 AM====ERROR====this is a error log
+01/03/2019 10:09:35 AM====CRITICAL====this is a critical log
+01/03/2019 10:09:35 AM====DEBUG====this is a debug log
+01/03/2019 10:09:35 AM====INFO====this is a info log
+01/03/2019 10:09:35 AM====WARNING====this is a warning log
+01/03/2019 10:09:35 AM====ERROR====this is a error log
+01/03/2019 10:09:35 AM====CRITICAL====this is a critical log
+01/03/2019 10:36:36 AM====DEBUG====this is a debug log
+01/03/2019 10:36:36 AM====INFO====this is a info log
+01/03/2019 10:36:36 AM====WARNING====this is a warning log
+01/03/2019 10:36:36 AM====ERROR====this is a error log
+01/03/2019 10:36:36 AM====CRITICAL====this is a critical log
+01/03/2019 10:36:36 AM====DEBUG====this is a debug log
+01/03/2019 10:36:36 AM====INFO====this is a info log
+01/03/2019 10:36:36 AM====WARNING====this is a warning log
+01/03/2019 10:36:36 AM====ERROR====this is a error log
+01/03/2019 10:36:36 AM====CRITICAL====this is a critical log

@@ -1,0 +1,5 @@
+2019-01-02 18:36:36,072--DEBUG--debug message
+2019-01-02 18:36:36,072--INFO--info message
+2019-01-02 18:36:36,072--WARNING--warning message
+2019-01-02 18:36:36,072--ERROR--error message
+2019-01-02 18:36:36,072--CRITICAL--critical message

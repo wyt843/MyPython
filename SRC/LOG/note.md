@@ -1,0 +1,115 @@
+# LOG
+- https://wwww.cnblogs.com/yyds/p/6901864.html
+- logging 模块提供了模块级别的函数记录日志
+- 包括四大组件
+
+## 1.日志相关概念
+- 日志
+- 日志级别（level）
+    - 不同的角色 关注不同信息
+    - DEBUG
+    - INFO
+    - NOTICE
+    - WARNING
+    - ERROR
+    - CRITICAL
+    - ALERT
+    - EMERGENCY
+- I/0操作不要太频繁
+- Log的作用
+    - 程序调试
+    - 了解软件程序运行情况，是否正常
+    - 软件程序运行故障分析与问题定位
+- 日志信息
+    - 事件发生时间
+    - 事件发生位置
+    - 事件的严重程度--日志级别
+    - 事件内容
+
+## 2. Logging模块
+- 日志级别
+    - 级别可以自定义
+    - 系统定义级别：
+        - DEBUG	最详细的日志信息，典型应用场景是 问题诊断
+        - INFO	信息详细程度仅次于DEBUG，通常只记录关键节点信息，用于确认一切都是按照我们预期的那样进行工作
+        - WARNING	当某些不期望的事情发生时记录的信息（如，磁盘可用空间较低），但是此时应用程序还是正常运行的
+        - ERROR	由于一个更严重的问题导致某些功能不能正常运行时记录的信息
+        - CRITICAL	当发生严重错误，导致应用程序不能继续运行时记录的信息
+        - 级别的优先级：DEBUG < INFO < WARNING < ERROR < CRITICAL
+- 初始化/写日志实例需要指定级别，只有当级别等于或者高于指定级别才被记录
+- 使用方式
+    - 直接使用logging(封装了其他组件)
+    - Logging 四大组件直接定制
+### 2.1 logging模块级别的日志
+- 使用以下几个函数
+    - logging.debug(msg, *args, **kwargs)	创建一条严重级别为DEBUG的日志记录
+    - logging.info(msg, *args, **kwargs)	创建一条严重级别为INFO的日志记录
+    - logging.warning(msg, *args, **kwargs)	创建一条严重级别为WARNING的日志记录
+    - logging.error(msg, *args, **kwargs)	创建一条严重级别为ERROR的日志记录
+    - logging.critical(msg, *args, **kwargs)创建一条严重级别为CRITICAL的日志记录
+    - logging.log(level, *args, **kwargs)	创建一条严重级别为level的日志记录
+    - logging.basicConfig(**kwargs)	        对root logger进行一次性配置
+ - logging.basicConfig(**kwargs)
+    - 只在第一次调用的时候起作用
+    - 函数用于指定“要记录的日志级别”、“日志格式”、“日志输出位置”、“日志文件的打开模式”等信息，其他几个都是用于记录各个级别日志的函数。
+        - 输出：默认 sys.stderr
+        - 级别：默认 WARNING
+        - 格式：level:log_name:content
+            - asctime	%(asctime)s	日志事件发生的时间--人类可读时间，如：2003-07-08 16:49:45,896
+            - created	%(created)f	日志事件发生的时间--时间戳，就是当时调用time.time()函数返回的值
+            - relativeCreated	%(relativeCreated)d	日志事件发生的时间相对于logging模块加载时间的相对毫秒数（目前还不知道干嘛用的）
+            - msecs	    %(msecs)d	日志事件发生事件的毫秒部分
+            - levelname	%(levelname)s	该日志记录的文字形式的日志级别（'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'）
+            - levelno	%(levelno)s	该日志记录的数字形式的日志级别（10, 20, 30, 40, 50）
+            - name	    %(name)s	所使用的日志器名称，默认是'root'，因为默认使用的是 rootLogger
+            - message	%(message)s	日志记录的文本内容，通过 msg % args计算得到的
+            - pathname	%(pathname)s	调用日志记录函数的源码文件的全路径
+            - filename	%(filename)s	pathname的文件名部分，包含文件后缀
+            - module	%(module)s	filename的名称部分，不包含后缀
+            - lineno	%(lineno)d	调用日志记录函数的源代码所在的行号
+            - funcName	%(funcName)s	调用日志记录函数的函数名
+            - process	%(process)d	进程ID
+            - processName	%(processName)s	进程名称，Python 3.1新增
+            - thread	%(thread)d	线程ID
+            - threadName	%(thread)s	线程名称
+- 案例：01.py
+
+### logging模块的处理流程
+- 四大组件
+    - 日志器(Logger)：产生日志的一个接口
+    - 处理器(Handler):把日志发送到目的地（发送邮件，短信等）
+    - 过滤器(filter):提供更细粒度的日志过滤功能，用于决定哪些日志记录将会被输出（其它的日志记录将会被忽略）
+    - 格式器(formatter):用于控制日志信息的最终输出格式
+- Logger
+    - 产生一个日志
+    - 操作
+        - Logger.setlvevl()
+    - 获取一个logger 对象
+        - 实例化
+        - logging.getLogger()
+- Handler
+    - 把log发送到指定位置
+    - 方法
+        - setLevel
+        - setFormat
+        - addFilter,removeFilter
+    - 不需要直接使用，Handler是基类
+    - 下面是几个常见的处理器
+        - Handler	                                描述
+        - logging.StreamHandler	                    将日志消息发送到输出到Stream，如std.out, std.err或任何file-like对象。
+        - logging.FileHandler	                    将日志消息发送到磁盘文件，默认情况下文件大小会无限增长
+        - logging.handlers.RotatingFileHandler	    将日志消息发送到磁盘文件，并支持日志文件按大小切割
+        - logging.hanlders.TimedRotatingFileHandler	将日志消息发送到磁盘文件，并支持日志文件按时间切割
+        - logging.handlers.HTTPHandler	            将日志消息以GET或POST的方式发送给一个HTTP服务器
+        - logging.handlers.SMTPHandler	            将日志消息发送给一个指定的email地址
+        - logging.NullHandler	                    该Handler实例会忽略error messages，通常被想使用logging的library开发者使用来避免'No handlers could be found for logger XXX'信息的出现。
+- Formater
+    - Formater对象用于配置日志信息的最终顺序、结构和内容。与logging.Handler基类不同的是，应用代码可以直接实例化Formatter类。另外，如果你的应用程序需要一些特殊的处理行为，也可以实现一个Formatter的子类来完成。
+    - Formatter类的构造方法定义如下：
+        - logging.Formatter.__init__(fmt=None, datefmt=None, style='%')
+        - fmt：指定消息格式化字符串，如果不指定该参数则默认使用message的原始值
+        - datefmt：指定日期格式字符串，如果不指定该参数则默认使用"%Y-%m-%d %H:%M:%S"
+        - style：Python 3.2新增的参数，可取值为 '%', '{'和 '$'，如果不指定该参数则默认使用'%'
+
+- Filter
+    - Filter可以被Handler和Logger用来做比level更细粒度的、更复杂的过滤功能。Filter是一个过滤器基类，它只允许某个logger层级下的日志事件通过过滤
