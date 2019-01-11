@@ -75,7 +75,7 @@
     - 构建一个MIMEMultipart格式邮件
     - MIMEMultipart的subtype设置为alternative格式
     - 添加HTML和TEXT格式邮件
-    - 案例08.py 
+    - 案例08.py
 
 - POP3 接受邮件协议
     - 步骤：
